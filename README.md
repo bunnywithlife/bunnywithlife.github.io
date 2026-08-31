@@ -53,6 +53,36 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+# 🎮 PlayAndLearn
+
+PlayAndLearn is an interactive Angular web platform designed to simplify complex concepts through interactive visual components, clear schema documentation, and engaging learning modules.
+
+---
+
+## ✨ Features
+
+* 🎯 **Interactive Visual Modules** — Dynamic components designed to make learning intuitive and visual.
+* 📚 **Schema & Documentation Guides** — Built-in visual references and cards for quick concept navigation.
+* ⚡ **Modern UI Layouts** — Clean interface using modern CSS flexbox layouts, custom variables, and responsive styling.
+* 🚀 **Angular 22 Core** — Powered by the latest Angular standalone architecture for fast loading and optimal performance.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Framework:** [Angular 22](https://angular.dev/)
+* **Language:** TypeScript, HTML5, CSS3
+* **Testing:** [Vitest](https://vitest.dev/)
+* **Styling:** Modular CSS & Flexbox
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (v18+) and the Angular CLI installed:
+```bash
+npm install -g @angular/cli
 
 ## Additional Resources
 
