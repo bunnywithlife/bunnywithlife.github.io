@@ -1,0 +1,252 @@
+<!-- app.component.html -->
+<div class="game-container">
+  <!-- Header / Stats Bar -->
+  <header class="stats-bar">
+    <div class="stat">
+      Level: <strong>{{ userLevel }}</strong>
+    </div>
+    <div class="stat">
+      XP: <strong>{{ userXP }}</strong>
+    </div>
+    <div class="stat">
+      Streak: <strong>{{ currentStreak }}</strong>
+    </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <div class="tab-container">
+    <button class="tab-button" [class.active]="activeTab === 'home'" (click)="switchTab('home')">
+      Home
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'lessons'"
+      (click)="switchTab('lessons')"
+    >
+      Lessons
+    </button>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="lab-workspace">
+    <!-- HOME TAB -->
+    <ng-container *ngIf="activeTab === 'home'">
+      <section class="home-section">
+        <div class="home-content">
+          <h1>Welcome to SQL Learning Platform</h1>
+          <p>Master SQL through interactive lessons and practice.</p>
+
+          <div class="home-stats">
+            <div class="stat-card">
+              <div class="stat-number">{{ lessons.length }}</div>
+              <div class="stat-label">Lessons</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">{{ userLevel }}</div>
+              <div class="stat-label">Current Level</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">{{ userXP }}</div>
+              <div class="stat-label">Total XP</div>
+            </div>
+          </div>
+
+          <div class="home-info">
+            <h2>How it Works</h2>
+            <ol>
+              <li>Read the lesson content to understand SQL concepts</li>
+              <li>Practice with the SQL query editor</li>
+              <li>Answer quiz questions to reinforce learning</li>
+              <li>Earn XP and progress through levels</li>
+            </ol>
+          </div>
+
+          <button class="btn-get-started" (click)="switchTab('lessons')">
+            Get Started with Lessons
+          </button>
+        </div>
+      </section>
+    </ng-container>
+
+    <!-- LESSONS TAB -->
+    <ng-container *ngIf="activeTab === 'lessons'">
+      <!-- Left: Lesson Panel -->
+      <section class="task-panel">
+        <h2 class="mission-title">{{ currentLesson.name }}: {{ currentLesson.title }}</h2>
+        <span class="difficulty" [ngClass]="'difficulty-' + currentLesson.difficulty.toLowerCase()">
+          {{ currentLesson.difficulty }}
+        </span>
+
+        <p class="mission-description">
+          {{ currentLesson.description }}
+        </p>
+
+        <!-- Lesson Content -->
+        <div class="lesson-content">
+          <h4>Content</h4>
+          <p>{{ currentLesson.content }}</p>
+        </div>
+
+        <!-- Practice Questions -->
+        <div class="practice-section">
+          <h4>Practice Queries ({{ currentLesson.practiceQuestions.length }})</h4>
+          <p class="practice-instruction">{{ currentPracticeQuestion.description }}</p>
+
+          <!-- Practice Question Selector -->
+          <div class="practice-selector">
+            <button
+              *ngFor="let pq of currentLesson.practiceQuestions; let i = index"
+              class="practice-btn"
+              [class.active]="selectedPracticeQuestionIndex === i"
+              (click)="selectPracticeQuestion(i)"
+            >
+              {{ i + 1 }}
+            </button>
+          </div>
+
+          <div class="practice-hint"><strong>Hint:</strong> {{ currentPracticeQuestion.hint }}</div>
+        </div>
+
+        <!-- Hint Button -->
+        <button (click)="useHint()" class="btn-hint">Show Hint (-20 XP)</button>
+
+        <!-- Navigation -->
+        <div class="task-navigation">
+          <button (click)="previousLesson()" [disabled]="currentLessonIndex === 0" class="btn-nav">
+            Previous
+          </button>
+          <button
+            (click)="nextLesson()"
+            [disabled]="currentLessonIndex === lessons.length - 1"
+            class="btn-nav"
+          >
+            Next
+          </button>
+        </div>
+      </section>
+
+      <!-- Right: SQL Editor & Quiz Panel -->
+      <section class="terminal-panel">
+        <!-- Schema Reference Button -->
+        <button class="btn-schema" (click)="toggleSchema()">
+          {{ showSchema ? '✕ Hide Database Schema' : '📊 View Database Schema' }}
+        </button>
+
+        <!-- Schema Reference Section -->
+        <div class="schema-reference" *ngIf="showSchema">
+          <div class="schema-content">
+            <h3>Database Schema Reference</h3>
+            <p class="schema-description">
+              Click on a table to view its structure and sample data.
+            </p>
+
+            <!-- Table Selector -->
+            <div class="table-selector">
+              <button
+                *ngFor="let table of tables; let i = index"
+                class="table-btn"
+                [class.active]="selectedTableIndex === i"
+                (click)="selectTable(i)"
+              >
+                {{ table.name }}
+              </button>
+            </div>
+
+            <!-- Current Table Details -->
+            <div class="table-details">
+              <h4>
+                Table: <span class="table-name">{{ currentTable.name }}</span>
+              </h4>
+              <p class="table-desc">{{ currentTable.description }}</p>
+
+              <!-- Columns -->
+              <div class="columns-section">
+                <strong>Columns:</strong>
+                <div class="columns-list">
+                  <span class="column-badge" *ngFor="let col of currentTable.columns">
+                    {{ col }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Sample Data Table -->
+              <div class="sample-data">
+                <strong>Sample Data:</strong>
+                <div class="table-scroll">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th *ngFor="let col of currentTable.columns">{{ col }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of currentTable.sampleData">
+                        <td *ngFor="let col of currentTable.columns">{{ row[col] }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SQL Editor Section -->
+        <div class="editor-section">
+          <h3>SQL Query Editor</h3>
+          <label for="query" class="label">Enter your SQL query:</label>
+          <textarea
+            [(ngModel)]="sqlInput"
+            id="query"
+            placeholder="SELECT * FROM users;"
+            class="sql-textarea"
+          ></textarea>
+
+          <div style="display: flex; gap: 0.5rem">
+            <button (click)="checkQuery()" class="btn-run">Execute</button>
+            <button (click)="resetTask()" class="btn-reset">Clear</button>
+          </div>
+
+          <!-- Feedback -->
+          <div class="feedback" [ngClass]="{ success: taskCompleted, error: !taskCompleted }">
+            {{ feedbackMessage }}
+          </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="quiz-section">
+          <h3>Quiz: {{ currentLesson.name }}</h3>
+          <p class="quiz-question">{{ currentLesson.quiz.question }}</p>
+
+          <div class="quiz-options">
+            <button
+              *ngFor="let option of currentLesson.quiz.options; let i = index"
+              class="quiz-option"
+              [class.selected]="selectedQuizAnswer === i"
+              [class.correct]="quizAnswered && i === currentLesson.quiz.correctAnswer"
+              [class.incorrect]="
+                quizAnswered && selectedQuizAnswer === i && i !== currentLesson.quiz.correctAnswer
+              "
+              (click)="selectQuizAnswer(i)"
+              [disabled]="quizAnswered"
+            >
+              {{ option }}
+            </button>
+          </div>
+
+          <button
+            (click)="submitQuizAnswer()"
+            class="btn-submit-quiz"
+            [disabled]="selectedQuizAnswer === null || quizAnswered"
+          >
+            Submit Answer
+          </button>
+
+          <div class="feedback" [ngClass]="{ success: quizAnswered, error: !quizAnswered }">
+            {{ feedbackMessage }}
+          </div>
+        </div>
+      </section>
+    </ng-container>
+  </main>
+</div>
