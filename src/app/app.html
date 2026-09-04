@@ -82,10 +82,28 @@
         </p>
 
         <!-- Lesson Content -->
-        <div class="lesson-content">
-          <h4>Content</h4>
-          <p>{{ currentLesson.content }}</p>
-        </div>
+      <div class="lesson-content">
+          <h4>What is {{ currentLesson.title }}?</h4>
+
+          <ul>
+            <li *ngFor="let point of currentLesson.content.points">
+             {{ point }}
+            </li>
+         </ul>
+
+        <h4>Syntax</h4>
+        <pre><code>{{ currentLesson.content.syntax }}</code></pre>
+
+        <h4>Example</h4>
+        <pre><code>{{ currentLesson.content.example }}</code></pre>
+
+        <h4>Explanation</h4>
+        <ul>
+          <li *ngFor="let point of currentLesson.content.explanation">
+            {{ point }}
+          </li>
+        </ul>
+      </div>
 
         <!-- Practice Questions -->
         <div class="practice-section">
