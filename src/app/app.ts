@@ -2917,6 +2917,2020 @@ export class App {
     }
   ]
 },
+{
+  id: 36,
+  name: 'Lesson 36',
+  title: 'Primary Key - Uniquely Identifying Records',
+  description: 'Learn how a Primary Key uniquely identifies each record in a table.',
+
+  content: {
+    points: [
+      'A Primary Key is a column or combination of columns that uniquely identifies each record in a table.',
+      'Each value in a Primary Key must be unique.',
+      'A Primary Key cannot contain NULL values.',
+      'A table can have only one Primary Key constraint.',
+      'A Primary Key helps prevent duplicate records.',
+      'Primary Keys are also useful for creating relationships between tables.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype PRIMARY KEY\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT PRIMARY KEY,\n  name VARCHAR(50),\n  age INT\n);',
+
+    explanation: [
+      'student_id is declared as the PRIMARY KEY.',
+      'Each student must have a unique student_id.',
+      'Two students cannot have the same student_id.',
+      'The Primary Key cannot contain NULL values.',
+      'The name and age columns store other information about the student.',
+      'Primary Keys help SQL identify each record uniquely.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT PRIMARY KEY, name VARCHAR(50), age INT);',
+
+  hint: 'Use PRIMARY KEY after the column definition that should uniquely identify each record.',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'Which statement about a Primary Key is correct?',
+    options: [
+      'It can contain duplicate values',
+      'It can contain NULL values',
+      'It uniquely identifies each record',
+      'It is used only for sorting records'
+    ],
+    correctAnswer: 2,
+    explanation: 'A Primary Key uniquely identifies each record and cannot contain duplicate or NULL values.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table with student_id as the Primary Key.',
+      query: 'CREATE TABLE students (student_id INT PRIMARY KEY, name VARCHAR(50), age INT);',
+      hint: 'Use student_id INT PRIMARY KEY.'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table with employee_id as the Primary Key.',
+      query: 'CREATE TABLE employees (employee_id INT PRIMARY KEY, name VARCHAR(50), salary INT);',
+      hint: 'Use employee_id as the PRIMARY KEY.'
+    },
+    {
+      id: 3,
+      description: 'Create a products table with product_id as the Primary Key.',
+      query: 'CREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(50), price INT);',
+      hint: 'Use product_id INT PRIMARY KEY.'
+    },
+    {
+      id: 4,
+      description: 'Create a courses table with course_id as the Primary Key.',
+      query: 'CREATE TABLE courses (course_id INT PRIMARY KEY, course_name VARCHAR(100));',
+      hint: 'Use course_id as the PRIMARY KEY.'
+    },
+    {
+      id: 5,
+      description: 'Create a books table with book_id as the Primary Key.',
+      query: 'CREATE TABLE books (book_id INT PRIMARY KEY, title VARCHAR(100));',
+      hint: 'Use book_id as the PRIMARY KEY.'
+    }
+  ]
+},
+{
+  id: 37,
+  name: 'Lesson 37',
+  title: 'Candidate Key - Possible Unique Keys',
+  description: 'Learn what a Candidate Key is and how it can uniquely identify records in a table.',
+
+  content: {
+    points: [
+      'A Candidate Key is a column or combination of columns that can uniquely identify each record in a table.',
+      'A table can have more than one Candidate Key.',
+      'Every Candidate Key must contain unique values.',
+      'A Candidate Key cannot contain NULL values when it is used to uniquely identify records.',
+      'One Candidate Key is selected as the Primary Key.',
+      'The remaining Candidate Keys that are not selected as the Primary Key can become Alternate Keys.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column1 datatype UNIQUE,\n  column2 datatype UNIQUE\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT PRIMARY KEY,\n  email VARCHAR(100) UNIQUE,\n  name VARCHAR(50)\n);',
+
+    explanation: [
+      'student_id can uniquely identify each student and is selected as the Primary Key.',
+      'email can also uniquely identify a student because each student should have a different email address.',
+      'Therefore, student_id and email can be considered possible Candidate Keys.',
+      'The Primary Key is selected from the available Candidate Keys.',
+      'A table may have multiple Candidate Keys but only one Primary Key.',
+      'A Candidate Key must be capable of uniquely identifying each record.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+
+  hint: 'A Candidate Key is a possible key that can uniquely identify every record.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'Which statement about a Candidate Key is correct?',
+    options: [
+      'It can contain duplicate values',
+      'It can uniquely identify each record',
+      'It is always a Foreign Key',
+      'A table can have only one Candidate Key'
+    ],
+    correctAnswer: 1,
+    explanation: 'A Candidate Key is a possible key that can uniquely identify each record in a table.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table where student_id is the Primary Key and email is a possible unique key.',
+      query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use PRIMARY KEY for student_id and UNIQUE for email.'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table where employee_id is the Primary Key and email is unique.',
+      query: 'CREATE TABLE employees (employee_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use employee_id as PRIMARY KEY and email as UNIQUE.'
+    },
+    {
+      id: 3,
+      description: 'Create a customers table where customer_id is the Primary Key and email is unique.',
+      query: 'CREATE TABLE customers (customer_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use PRIMARY KEY for customer_id and UNIQUE for email.'
+    },
+    {
+      id: 4,
+      description: 'Create a courses table where course_id is the Primary Key and course_code is unique.',
+      query: 'CREATE TABLE courses (course_id INT PRIMARY KEY, course_code VARCHAR(20) UNIQUE, course_name VARCHAR(100));',
+      hint: 'Use course_id as PRIMARY KEY and course_code as UNIQUE.'
+    },
+    {
+      id: 5,
+      description: 'Create a books table where book_id is the Primary Key and isbn is unique.',
+      query: 'CREATE TABLE books (book_id INT PRIMARY KEY, isbn VARCHAR(20) UNIQUE, title VARCHAR(100));',
+      hint: 'Use book_id as PRIMARY KEY and isbn as UNIQUE.'
+    }
+  ]
+},
+{
+  id: 38,
+  name: 'Lesson 38',
+  title: 'Alternate Key - Other Unique Key',
+  description: 'Learn what an Alternate Key is and how it is related to Candidate Keys and the Primary Key.',
+
+  content: {
+    points: [
+      'An Alternate Key is a Candidate Key that is not selected as the Primary Key.',
+      'A table can have multiple Candidate Keys.',
+      'Only one Candidate Key is selected as the Primary Key.',
+      'The remaining Candidate Keys are called Alternate Keys.',
+      'An Alternate Key can also uniquely identify records in a table.',
+      'Alternate Keys help maintain uniqueness for other important columns.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  primary_key_column datatype PRIMARY KEY,\n  alternate_key_column datatype UNIQUE\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT PRIMARY KEY,\n  email VARCHAR(100) UNIQUE,\n  name VARCHAR(50)\n);',
+
+    explanation: [
+      'student_id is selected as the Primary Key.',
+      'email can also uniquely identify a student, so it can be a Candidate Key.',
+      'Since email is not selected as the Primary Key, it becomes an Alternate Key.',
+      'The UNIQUE constraint helps ensure that two students do not have the same email.',
+      'Therefore, an Alternate Key is basically a Candidate Key that was not chosen as the Primary Key.',
+      'A table can have multiple Alternate Keys if it has multiple remaining Candidate Keys.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+
+  hint: 'An Alternate Key is a Candidate Key that was not selected as the Primary Key.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What is an Alternate Key?',
+    options: [
+      'A Foreign Key used to connect tables',
+      'A Candidate Key not selected as the Primary Key',
+      'A key that contains duplicate values',
+      'A key used only for sorting'
+    ],
+    correctAnswer: 1,
+    explanation: 'An Alternate Key is a Candidate Key that is not selected as the Primary Key.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table with student_id as Primary Key and email as another unique key.',
+      query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use student_id as PRIMARY KEY and email as UNIQUE.'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table with employee_id as Primary Key and email as another unique key.',
+      query: 'CREATE TABLE employees (employee_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use employee_id as PRIMARY KEY and email as UNIQUE.'
+    },
+    {
+      id: 3,
+      description: 'Create a customers table with customer_id as Primary Key and email as another unique key.',
+      query: 'CREATE TABLE customers (customer_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use customer_id as PRIMARY KEY and email as UNIQUE.'
+    },
+    {
+      id: 4,
+      description: 'Create a courses table with course_id as Primary Key and course_code as another unique key.',
+      query: 'CREATE TABLE courses (course_id INT PRIMARY KEY, course_code VARCHAR(20) UNIQUE, course_name VARCHAR(100));',
+      hint: 'Use course_id as PRIMARY KEY and course_code as UNIQUE.'
+    },
+    {
+      id: 5,
+      description: 'Create a books table with book_id as Primary Key and isbn as another unique key.',
+      query: 'CREATE TABLE books (book_id INT PRIMARY KEY, isbn VARCHAR(20) UNIQUE, title VARCHAR(100));',
+      hint: 'Use book_id as PRIMARY KEY and isbn as UNIQUE.'
+    }
+  ]
+},
+{
+  id: 39,
+  name: 'Lesson 39',
+  title: 'Composite Key - Combining Multiple Columns',
+  description: 'Learn how a Composite Key uses two or more columns together to uniquely identify a record.',
+
+  content: {
+    points: [
+      'A Composite Key is a key made using two or more columns together.',
+      'It is used when a single column cannot uniquely identify a record.',
+      'The combination of the columns must uniquely identify each record.',
+      'Each column in a Composite Key may contain duplicate values individually.',
+      'The combination of all columns in the key must be unique.',
+      'Composite Keys are useful in tables that represent relationships between entities.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column1 datatype,\n  column2 datatype,\n  PRIMARY KEY (column1, column2)\n);',
+
+    example: 'CREATE TABLE student_courses (\n  student_id INT,\n  course_id INT,\n  enrollment_date DATE,\n  PRIMARY KEY (student_id, course_id)\n);',
+
+    explanation: [
+      'student_id identifies a student, but the same student can enroll in multiple courses.',
+      'course_id identifies a course, but many students can enroll in the same course.',
+      'Therefore, neither student_id nor course_id alone can uniquely identify an enrollment.',
+      'The combination of student_id and course_id uniquely identifies each student-course relationship.',
+      'PRIMARY KEY (student_id, course_id) creates a Composite Key using both columns.',
+      'The same student cannot have the same course combination more than once.'
+    ]
+  },
+
+  query: 'CREATE TABLE student_courses (student_id INT, course_id INT, enrollment_date DATE, PRIMARY KEY (student_id, course_id));',
+
+  hint: 'Use two or more columns together inside PRIMARY KEY (column1, column2).',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What is a Composite Key?',
+    options: [
+      'A key made using only one column',
+      'A key made using two or more columns',
+      'A key used only for sorting',
+      'A key that always contains NULL values'
+    ],
+    correctAnswer: 1,
+    explanation: 'A Composite Key combines two or more columns to uniquely identify a record.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a student_courses table using student_id and course_id as a Composite Key.',
+      query: 'CREATE TABLE student_courses (student_id INT, course_id INT, PRIMARY KEY (student_id, course_id));',
+      hint: 'Put both columns inside PRIMARY KEY().'
+    },
+    {
+      id: 2,
+      description: 'Create an order_items table using order_id and product_id as a Composite Key.',
+      query: 'CREATE TABLE order_items (order_id INT, product_id INT, quantity INT, PRIMARY KEY (order_id, product_id));',
+      hint: 'Use order_id and product_id together as the Primary Key.'
+    },
+    {
+      id: 3,
+      description: 'Create an employee_projects table using employee_id and project_id as a Composite Key.',
+      query: 'CREATE TABLE employee_projects (employee_id INT, project_id INT, PRIMARY KEY (employee_id, project_id));',
+      hint: 'Use both employee_id and project_id inside PRIMARY KEY().'
+    },
+    {
+      id: 4,
+      description: 'Create a course_teachers table using course_id and teacher_id as a Composite Key.',
+      query: 'CREATE TABLE course_teachers (course_id INT, teacher_id INT, PRIMARY KEY (course_id, teacher_id));',
+      hint: 'Combine course_id and teacher_id in the Primary Key.'
+    },
+    {
+      id: 5,
+      description: 'Create a product_suppliers table using product_id and supplier_id as a Composite Key.',
+      query: 'CREATE TABLE product_suppliers (product_id INT, supplier_id INT, PRIMARY KEY (product_id, supplier_id));',
+      hint: 'Use product_id and supplier_id together as the Composite Key.'
+    }
+  ]
+},
+{
+  id: 40,
+  name: 'Lesson 40',
+  title: 'NOT NULL - Preventing Missing Values',
+  description: 'Learn how the NOT NULL constraint ensures that a column cannot contain NULL values.',
+
+  content: {
+    points: [
+      'The NOT NULL constraint prevents a column from containing NULL values.',
+      'It ensures that a value must be provided when a record is inserted.',
+      'NOT NULL is useful for columns where information is required.',
+      'A column can be defined with NOT NULL while creating a table.',
+      'NOT NULL helps maintain complete and reliable data.',
+      'It can be applied to columns such as name, email, phone number, or other required information.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype NOT NULL\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT,\n  name VARCHAR(50) NOT NULL\n);',
+
+    explanation: [
+      'student_id stores the ID of the student.',
+      'name is defined with the NOT NULL constraint.',
+      'This means the name column cannot contain a NULL value.',
+      'When inserting a student record, a value must be provided for name.',
+      'NOT NULL is useful when a particular piece of information is mandatory.',
+      'The constraint helps prevent missing values in important columns.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT, name VARCHAR(50) NOT NULL);',
+
+  hint: 'Add NOT NULL after the datatype of the column that must always contain a value.',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'What does the NOT NULL constraint do?',
+    options: [
+      'Allows only duplicate values',
+      'Prevents a column from containing NULL values',
+      'Deletes NULL records',
+      'Creates a Primary Key automatically'
+    ],
+    correctAnswer: 1,
+    explanation: 'NOT NULL ensures that a column must contain a value and cannot contain NULL.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table where name cannot be NULL.',
+      query: 'CREATE TABLE students (student_id INT, name VARCHAR(50) NOT NULL);',
+      hint: 'Add NOT NULL after VARCHAR(50).'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table where name cannot be NULL.',
+      query: 'CREATE TABLE employees (employee_id INT, name VARCHAR(50) NOT NULL);',
+      hint: 'Use NOT NULL with the name column.'
+    },
+    {
+      id: 3,
+      description: 'Create a products table where product name cannot be NULL.',
+      query: 'CREATE TABLE products (product_id INT, name VARCHAR(50) NOT NULL);',
+      hint: 'Make the name column NOT NULL.'
+    },
+    {
+      id: 4,
+      description: 'Create a customers table where email cannot be NULL.',
+      query: 'CREATE TABLE customers (customer_id INT, email VARCHAR(100) NOT NULL);',
+      hint: 'Use NOT NULL with the email column.'
+    },
+    {
+      id: 5,
+      description: 'Create a courses table where course_name cannot be NULL.',
+      query: 'CREATE TABLE courses (course_id INT, course_name VARCHAR(100) NOT NULL);',
+      hint: 'Make course_name NOT NULL.'
+    }
+  ]
+},
+{
+  id: 41,
+  name: 'Lesson 41',
+  title: 'UNIQUE - Preventing Duplicate Values',
+  description: 'Learn how the UNIQUE constraint ensures that a column does not contain duplicate values.',
+
+  content: {
+    points: [
+      'The UNIQUE constraint ensures that all values in a column are different.',
+      'It prevents duplicate values from being stored in a column.',
+      'UNIQUE is useful for information that should be different for every record.',
+      'Common examples include email addresses, phone numbers, usernames, and identification codes.',
+      'A table can have multiple UNIQUE constraints on different columns.',
+      'UNIQUE is different from PRIMARY KEY because a table can have multiple UNIQUE constraints.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype UNIQUE\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT PRIMARY KEY,\n  email VARCHAR(100) UNIQUE,\n  name VARCHAR(50)\n);',
+
+    explanation: [
+      'student_id is the Primary Key and uniquely identifies each student.',
+      'email is defined with the UNIQUE constraint.',
+      'This means two students cannot have the same email address.',
+      'The UNIQUE constraint prevents duplicate email values.',
+      'A table can have more than one column with a UNIQUE constraint.',
+      'UNIQUE is useful when a column must contain different values for different records.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+
+  hint: 'Add UNIQUE after the datatype of the column where duplicate values should not be allowed.',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'What does the UNIQUE constraint do?',
+    options: [
+      'Allows duplicate values',
+      'Prevents duplicate values in a column',
+      'Deletes duplicate rows automatically',
+      'Creates a Foreign Key'
+    ],
+    correctAnswer: 1,
+    explanation: 'The UNIQUE constraint prevents duplicate values from being stored in a column.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table where email must be unique.',
+      query: 'CREATE TABLE students (student_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Add UNIQUE to the email column.'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table where email must be unique.',
+      query: 'CREATE TABLE employees (employee_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Use UNIQUE with the email column.'
+    },
+    {
+      id: 3,
+      description: 'Create a customers table where email must be unique.',
+      query: 'CREATE TABLE customers (customer_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, name VARCHAR(50));',
+      hint: 'Make the email column UNIQUE.'
+    },
+    {
+      id: 4,
+      description: 'Create a products table where product_code must be unique.',
+      query: 'CREATE TABLE products (product_id INT PRIMARY KEY, product_code VARCHAR(20) UNIQUE, name VARCHAR(50));',
+      hint: 'Use UNIQUE with product_code.'
+    },
+    {
+      id: 5,
+      description: 'Create a courses table where course_code must be unique.',
+      query: 'CREATE TABLE courses (course_id INT PRIMARY KEY, course_code VARCHAR(20) UNIQUE, course_name VARCHAR(100));',
+      hint: 'Make course_code UNIQUE.'
+    }
+  ]
+},
+{
+  id: 42,
+  name: 'Lesson 42',
+  title: 'PRIMARY KEY Constraint - Uniquely Identifying Records',
+  description: 'Learn how the PRIMARY KEY constraint uniquely identifies each record in a table.',
+
+  content: {
+    points: [
+      'The PRIMARY KEY constraint is used to uniquely identify each record in a table.',
+      'A Primary Key must contain unique values.',
+      'A Primary Key cannot contain NULL values.',
+      'A table can have only one PRIMARY KEY constraint.',
+      'The PRIMARY KEY constraint helps prevent duplicate records.',
+      'A Primary Key can consist of a single column or multiple columns.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype PRIMARY KEY\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT PRIMARY KEY,\n  name VARCHAR(50),\n  age INT\n);',
+
+    explanation: [
+      'student_id is defined as the PRIMARY KEY.',
+      'Each student must have a unique student_id.',
+      'The student_id cannot be NULL.',
+      'The PRIMARY KEY constraint prevents duplicate student IDs.',
+      'The name and age columns store additional student information.',
+      'A PRIMARY KEY is important for uniquely identifying records in a table.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT PRIMARY KEY, name VARCHAR(50), age INT);',
+
+  hint: 'Use PRIMARY KEY after the datatype of the column that should uniquely identify each record.',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'Which of the following is true about a PRIMARY KEY?',
+    options: [
+      'It can contain duplicate values',
+      'It can contain NULL values',
+      'It uniquely identifies each record',
+      'A table can have unlimited Primary Keys'
+    ],
+    correctAnswer: 2,
+    explanation: 'A PRIMARY KEY uniquely identifies each record and cannot contain duplicate or NULL values.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table with student_id as the Primary Key.',
+      query: 'CREATE TABLE students (student_id INT PRIMARY KEY, name VARCHAR(50), age INT);',
+      hint: 'Use student_id INT PRIMARY KEY.'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table with employee_id as the Primary Key.',
+      query: 'CREATE TABLE employees (employee_id INT PRIMARY KEY, name VARCHAR(50), salary INT);',
+      hint: 'Use employee_id as the PRIMARY KEY.'
+    },
+    {
+      id: 3,
+      description: 'Create a products table with product_id as the Primary Key.',
+      query: 'CREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(50), price INT);',
+      hint: 'Use product_id as the PRIMARY KEY.'
+    },
+    {
+      id: 4,
+      description: 'Create a courses table with course_id as the Primary Key.',
+      query: 'CREATE TABLE courses (course_id INT PRIMARY KEY, course_name VARCHAR(100));',
+      hint: 'Use course_id as the PRIMARY KEY.'
+    },
+    {
+      id: 5,
+      description: 'Create a books table with book_id as the Primary Key.',
+      query: 'CREATE TABLE books (book_id INT PRIMARY KEY, title VARCHAR(100));',
+      hint: 'Use book_id as the PRIMARY KEY.'
+    }
+  ]
+},
+{
+  id: 43,
+  name: 'Lesson 43',
+  title: 'FOREIGN KEY Constraint - Connecting Tables',
+  description: 'Learn how the FOREIGN KEY constraint creates a relationship between two tables.',
+
+  content: {
+    points: [
+      'The FOREIGN KEY constraint is used to create a relationship between two tables.',
+      'A Foreign Key usually refers to the Primary Key of another table.',
+      'It helps maintain referential integrity between related tables.',
+      'A Foreign Key value should match a value in the referenced table when it is not NULL.',
+      'A table can have multiple Foreign Keys.',
+      'Foreign Keys are commonly used when tables need to be connected.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype,\n  FOREIGN KEY (column_name) REFERENCES other_table(column_name)\n);',
+
+    example: 'CREATE TABLE orders (\n  order_id INT PRIMARY KEY,\n  customer_id INT,\n  FOREIGN KEY (customer_id) REFERENCES customers(id)\n);',
+
+    explanation: [
+      'order_id is the Primary Key of the orders table.',
+      'customer_id is used to identify which customer placed the order.',
+      'customer_id is defined as a FOREIGN KEY.',
+      'The REFERENCES clause connects customer_id with the id column of the customers table.',
+      'The id column in customers should be a key that uniquely identifies a customer.',
+      'This relationship helps ensure that orders are associated with valid customers.'
+    ]
+  },
+
+  query: 'CREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(id));',
+
+  hint: 'Use FOREIGN KEY (column) REFERENCES table(column) to connect one table with another.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What is the main purpose of a FOREIGN KEY constraint?',
+    options: [
+      'To create a duplicate record',
+      'To connect related tables',
+      'To sort records',
+      'To delete a table'
+    ],
+    correctAnswer: 1,
+    explanation: 'A FOREIGN KEY creates a relationship between tables and helps maintain referential integrity.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create an orders table with customer_id as a Foreign Key referencing customers(id).',
+      query: 'CREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(id));',
+      hint: 'Use FOREIGN KEY (customer_id) REFERENCES customers(id).'
+    },
+    {
+      id: 2,
+      description: 'Create an enrollments table with student_id as a Foreign Key referencing students(id).',
+      query: 'CREATE TABLE enrollments (enrollment_id INT PRIMARY KEY, student_id INT, FOREIGN KEY (student_id) REFERENCES students(id));',
+      hint: 'Use student_id as the Foreign Key.'
+    },
+    {
+      id: 3,
+      description: 'Create an employee_projects table with employee_id as a Foreign Key referencing employees(id).',
+      query: 'CREATE TABLE employee_projects (assignment_id INT PRIMARY KEY, employee_id INT, FOREIGN KEY (employee_id) REFERENCES employees(id));',
+      hint: 'Use FOREIGN KEY (employee_id) REFERENCES employees(id).'
+    },
+    {
+      id: 4,
+      description: 'Create an order_items table with order_id as a Foreign Key referencing orders(id).',
+      query: 'CREATE TABLE order_items (item_id INT PRIMARY KEY, order_id INT, FOREIGN KEY (order_id) REFERENCES orders(id));',
+      hint: 'Use order_id as the Foreign Key.'
+    },
+    {
+      id: 5,
+      description: 'Create a student_courses table with student_id as a Foreign Key referencing students(id).',
+      query: 'CREATE TABLE student_courses (record_id INT PRIMARY KEY, student_id INT, FOREIGN KEY (student_id) REFERENCES students(id));',
+      hint: 'Use FOREIGN KEY (student_id) REFERENCES students(id).'
+    }
+  ]
+},
+{
+  id: 44,
+  name: 'Lesson 44',
+  title: 'CHECK - Validating Data Values',
+  description: 'Learn how the CHECK constraint ensures that values entered into a column satisfy a specified condition.',
+
+  content: {
+    points: [
+      'The CHECK constraint is used to make sure that values in a column satisfy a specific condition.',
+      'It helps prevent invalid data from being inserted into a table.',
+      'The condition is written inside the CHECK constraint.',
+      'If the condition is not satisfied, the database rejects the value.',
+      'CHECK can be used with numeric, text, and other suitable columns.',
+      'It helps maintain accurate and valid data in a table.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype CHECK (condition)\n);',
+
+    example: 'CREATE TABLE students (\n  student_id INT,\n  age INT CHECK (age >= 18),\n  name VARCHAR(50)\n);',
+
+    explanation: [
+      'The age column is defined with a CHECK constraint.',
+      'CHECK (age >= 18) means that the age must be 18 or greater.',
+      'If someone tries to insert an age below 18, the database can reject the value.',
+      'The CHECK constraint helps prevent invalid values from being stored.',
+      'Different conditions can be used depending on the requirement.',
+      'CHECK is useful for enforcing rules on the data stored in a table.'
+    ]
+  },
+
+  query: 'CREATE TABLE students (student_id INT, age INT CHECK (age >= 18), name VARCHAR(50));',
+
+  hint: 'Use CHECK followed by a condition, such as CHECK (age >= 18).',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'What is the purpose of the CHECK constraint?',
+    options: [
+      'To allow every value',
+      'To validate values using a condition',
+      'To delete invalid tables',
+      'To sort records'
+    ],
+    correctAnswer: 1,
+    explanation: 'The CHECK constraint ensures that values satisfy a specified condition before they are stored.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a students table where age must be 18 or greater.',
+      query: 'CREATE TABLE students (student_id INT, age INT CHECK (age >= 18), name VARCHAR(50));',
+      hint: 'Use CHECK (age >= 18).'
+    },
+    {
+      id: 2,
+      description: 'Create an employees table where salary must be greater than 10000.',
+      query: 'CREATE TABLE employees (employee_id INT, salary INT CHECK (salary > 10000), name VARCHAR(50));',
+      hint: 'Use CHECK (salary > 10000).'
+    },
+    {
+      id: 3,
+      description: 'Create a products table where price must be greater than 0.',
+      query: 'CREATE TABLE products (product_id INT, price INT CHECK (price > 0), name VARCHAR(50));',
+      hint: 'Use CHECK (price > 0).'
+    },
+    {
+      id: 4,
+      description: 'Create a students table where age must be between 18 and 60.',
+      query: 'CREATE TABLE students (student_id INT, age INT CHECK (age >= 18 AND age <= 60), name VARCHAR(50));',
+      hint: 'Use a CHECK condition with both minimum and maximum age.'
+    },
+    {
+      id: 5,
+      description: 'Create a products table where stock cannot be negative.',
+      query: 'CREATE TABLE products (product_id INT, stock INT CHECK (stock >= 0), name VARCHAR(50));',
+      hint: 'Use CHECK (stock >= 0).'
+    }
+  ]
+},
+{
+  id: 45,
+  name: 'Lesson 45',
+  title: 'DEFAULT - Setting Default Values',
+  description: 'Learn how the DEFAULT constraint automatically provides a value when no value is specified.',
+
+  content: {
+    points: [
+      'The DEFAULT constraint is used to assign a default value to a column.',
+      'If no value is provided for that column during INSERT, the default value is automatically used.',
+      'DEFAULT is useful when a column commonly has the same initial value.',
+      'It can be used with different types of values such as numbers, text, and dates.',
+      'DEFAULT helps reduce the need to manually enter common values.',
+      'The default value is used only when a value is not provided for the column.'
+    ],
+
+    syntax: 'CREATE TABLE table_name (\n  column_name datatype DEFAULT default_value\n);',
+
+    example: 'CREATE TABLE users (\n  id INT PRIMARY KEY,\n  name VARCHAR(50),\n  status VARCHAR(20) DEFAULT \'Active\'\n);',
+
+    explanation: [
+      'The status column is defined with a DEFAULT value of Active.',
+      'If a new user is inserted without specifying a status, SQL automatically uses Active.',
+      'For example, an INSERT statement can provide only the id and name.',
+      'The database then assigns Active to the status column.',
+      'If a different status is explicitly provided, that value can be stored instead.',
+      'DEFAULT is useful for providing commonly used values automatically.'
+    ]
+  },
+
+  query: 'CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50), status VARCHAR(20) DEFAULT \'Active\');',
+
+  hint: 'Use DEFAULT followed by the value you want SQL to use automatically.',
+
+  difficulty: 'Easy',
+
+  quiz: {
+    question: 'What does the DEFAULT constraint do?',
+    options: [
+      'Deletes a column',
+      'Automatically provides a value when no value is specified',
+      'Prevents duplicate values',
+      'Creates a Foreign Key'
+    ],
+    correctAnswer: 1,
+    explanation: 'DEFAULT automatically provides the specified value when no value is given for the column.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a users table where status has a default value of Active.',
+      query: 'CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50), status VARCHAR(20) DEFAULT \'Active\');',
+      hint: 'Use DEFAULT \'Active\' for the status column.'
+    },
+    {
+      id: 2,
+      description: 'Create a products table where stock has a default value of 0.',
+      query: 'CREATE TABLE products (id INT PRIMARY KEY, name VARCHAR(50), stock INT DEFAULT 0);',
+      hint: 'Use DEFAULT 0 for stock.'
+    },
+    {
+      id: 3,
+      description: 'Create an employees table where department has a default value of General.',
+      query: 'CREATE TABLE employees (id INT PRIMARY KEY, name VARCHAR(50), department VARCHAR(50) DEFAULT \'General\');',
+      hint: 'Use DEFAULT \'General\' for department.'
+    },
+    {
+      id: 4,
+      description: 'Create an orders table where status has a default value of Pending.',
+      query: 'CREATE TABLE orders (id INT PRIMARY KEY, customer_id INT, status VARCHAR(20) DEFAULT \'Pending\');',
+      hint: 'Use DEFAULT \'Pending\' for status.'
+    },
+    {
+      id: 5,
+      description: 'Create a students table where city has a default value of Mumbai.',
+      query: 'CREATE TABLE students (id INT PRIMARY KEY, name VARCHAR(50), city VARCHAR(50) DEFAULT \'Mumbai\');',
+      hint: 'Use DEFAULT \'Mumbai\' for city.'
+    }
+  ]
+},
+{
+  id: 46,
+  name: 'Lesson 46',
+  title: 'Joins - Combining Data from Tables',
+  description: 'Learn what SQL Joins are and how they are used to combine related data from multiple tables.',
+
+  content: {
+    points: [
+      'A JOIN is used to combine related data from two or more tables.',
+      'Joins are useful when related information is stored in different tables.',
+      'Tables are usually connected using a common column.',
+      'A common example is connecting customers with their orders using customer_id.',
+      'SQL provides different types of joins such as INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN.',
+      'Joins help us retrieve related information from multiple tables in a single query.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2\nFROM table1\nJOIN table2\nON table1.common_column = table2.common_column;',
+
+    example: 'SELECT customers.name, orders.order_id\nFROM customers\nJOIN orders\nON customers.id = orders.customer_id;',
+
+    explanation: [
+      'The customers table contains customer information.',
+      'The orders table contains order information.',
+      'customers.id and orders.customer_id are related columns.',
+      'The JOIN combines matching records from the two tables.',
+      'The ON condition tells SQL how the two tables are related.',
+      'The result displays the customer name along with the related order ID.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.order_id FROM customers JOIN orders ON customers.id = orders.customer_id;',
+
+  hint: 'Use JOIN to combine two related tables and ON to specify the common columns.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What is the main purpose of a JOIN in SQL?',
+    options: [
+      'To delete tables',
+      'To combine related data from multiple tables',
+      'To create a database',
+      'To sort records only'
+    ],
+    correctAnswer: 1,
+    explanation: 'A JOIN is used to combine related data from two or more tables.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display customer names along with their order IDs.',
+      query: 'SELECT customers.name, orders.order_id FROM customers JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Join customers and orders using id and customer_id.'
+    },
+    {
+      id: 2,
+      description: 'Display customer names and their order status.',
+      query: 'SELECT customers.name, orders.status FROM customers JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Join the customers and orders tables using their related ID columns.'
+    },
+    {
+      id: 3,
+      description: 'Display customer emails along with their order IDs.',
+      query: 'SELECT customers.email, orders.order_id FROM customers JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Select email from customers and order_id from orders.'
+    },
+    {
+      id: 4,
+      description: 'Display customer names and order dates.',
+      query: 'SELECT customers.name, orders.order_date FROM customers JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use the common customer ID columns in the JOIN condition.'
+    },
+    {
+      id: 5,
+      description: 'Display customer names along with order status.',
+      query: 'SELECT customers.name, orders.status FROM customers JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use JOIN with customers and orders and connect them using id and customer_id.'
+    }
+  ]
+},
+{
+  id: 47,
+  name: 'Lesson 47',
+  title: 'INNER JOIN - Matching Records from Tables',
+  description: 'Learn how INNER JOIN returns only the records that have matching values in both tables.',
+
+  content: {
+    points: [
+      'INNER JOIN is used to combine records from two or more tables.',
+      'It returns only the records where matching values are found in both tables.',
+      'The matching condition is usually specified using the ON clause.',
+      'INNER JOIN is useful when we only want related records from both tables.',
+      'Records without a matching value in either table are not included in the result.',
+      'INNER JOIN is one of the most commonly used SQL joins.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2\nFROM table1\nINNER JOIN table2\nON table1.common_column = table2.common_column;',
+
+    example: 'SELECT customers.name, orders.order_id\nFROM customers\nINNER JOIN orders\nON customers.id = orders.customer_id;',
+
+    explanation: [
+      'The customers table contains customer information.',
+      'The orders table contains order information.',
+      'customers.id and orders.customer_id are used to match the records.',
+      'INNER JOIN returns only customers who have a matching order.',
+      'The ON condition tells SQL which columns should be compared.',
+      'Customers without any matching order will not appear in the result.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.order_id FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+
+  hint: 'Use INNER JOIN between the two tables and match their related columns using ON.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What does an INNER JOIN return?',
+    options: [
+      'All records from the first table',
+      'All records from both tables',
+      'Only records with matching values in both tables',
+      'Only records without matching values'
+    ],
+    correctAnswer: 2,
+    explanation: 'INNER JOIN returns only the records that have matching values in both tables.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display customer names and their order IDs using INNER JOIN.',
+      query: 'SELECT customers.name, orders.order_id FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Join customers and orders using customers.id and orders.customer_id.'
+    },
+    {
+      id: 2,
+      description: 'Display customer names and order status using INNER JOIN.',
+      query: 'SELECT customers.name, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use INNER JOIN and select name and status.'
+    },
+    {
+      id: 3,
+      description: 'Display customer emails and order dates using INNER JOIN.',
+      query: 'SELECT customers.email, orders.order_date FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Match customers.id with orders.customer_id.'
+    },
+    {
+      id: 4,
+      description: 'Display customer names and order dates using INNER JOIN.',
+      query: 'SELECT customers.name, orders.order_date FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use INNER JOIN between customers and orders.'
+    },
+    {
+      id: 5,
+      description: 'Display customer names and order statuses using INNER JOIN.',
+      query: 'SELECT customers.name, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Select name and status and match the customer IDs.'
+    }
+  ]
+},
+{
+  id: 48,
+  name: 'Lesson 48',
+  title: 'LEFT JOIN - Including All Left Table Records',
+  description: 'Learn how LEFT JOIN returns all records from the left table and matching records from the right table.',
+
+  content: {
+    points: [
+      'LEFT JOIN is used to combine records from two tables.',
+      'It returns all records from the left table.',
+      'It also returns matching records from the right table.',
+      'If there is no matching record in the right table, NULL values are returned for the right table columns.',
+      'LEFT JOIN is useful when we want to keep every record from the main or left table.',
+      'The matching condition is usually specified using the ON clause.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2\nFROM table1\nLEFT JOIN table2\nON table1.common_column = table2.common_column;',
+
+    example: 'SELECT customers.name, orders.order_id\nFROM customers\nLEFT JOIN orders\nON customers.id = orders.customer_id;',
+
+    explanation: [
+      'The customers table is the left table because it appears after FROM.',
+      'The orders table is the right table because it appears after LEFT JOIN.',
+      'LEFT JOIN returns every customer, even if the customer has no order.',
+      'When a customer has a matching order, the order information is displayed.',
+      'If a customer has no matching order, the order columns contain NULL.',
+      'The ON condition tells SQL how the two tables are related.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.order_id FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+
+  hint: 'Use LEFT JOIN to keep all records from the table written after FROM.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What does a LEFT JOIN return?',
+    options: [
+      'Only matching records from both tables',
+      'All records from the left table and matching records from the right table',
+      'Only records from the right table',
+      'Only records that do not match'
+    ],
+    correctAnswer: 1,
+    explanation: 'LEFT JOIN returns all records from the left table and matching records from the right table. If there is no match, NULL is returned for the right table columns.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display all customers and their order IDs using LEFT JOIN.',
+      query: 'SELECT customers.name, orders.order_id FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use LEFT JOIN between customers and orders.'
+    },
+    {
+      id: 2,
+      description: 'Display all customers and their order status using LEFT JOIN.',
+      query: 'SELECT customers.name, orders.status FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Keep all customers and match their orders.'
+    },
+    {
+      id: 3,
+      description: 'Display all customers and their order dates using LEFT JOIN.',
+      query: 'SELECT customers.name, orders.order_date FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use customers as the left table.'
+    },
+    {
+      id: 4,
+      description: 'Display all customers with their email and order IDs.',
+      query: 'SELECT customers.email, orders.order_id FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Select email from customers and order_id from orders.'
+    },
+    {
+      id: 5,
+      description: 'Display all customers along with their order status.',
+      query: 'SELECT customers.name, orders.status FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use LEFT JOIN and match customers.id with orders.customer_id.'
+    }
+  ]
+},
+{
+  id: 49,
+  name: 'Lesson 49',
+  title: 'RIGHT JOIN - Including All Right Table Records',
+  description: 'Learn how RIGHT JOIN returns all records from the right table and matching records from the left table.',
+
+  content: {
+    points: [
+      'RIGHT JOIN is used to combine records from two tables.',
+      'It returns all records from the right table.',
+      'It also returns matching records from the left table.',
+      'If there is no matching record in the left table, NULL values are returned for the left table columns.',
+      'RIGHT JOIN is useful when we want to keep every record from the right table.',
+      'The matching condition is usually specified using the ON clause.',
+      'RIGHT JOIN is the opposite of LEFT JOIN in terms of which table is fully preserved.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2\nFROM table1\nRIGHT JOIN table2\nON table1.common_column = table2.common_column;',
+
+    example: 'SELECT customers.name, orders.order_id\nFROM customers\nRIGHT JOIN orders\nON customers.id = orders.customer_id;',
+
+    explanation: [
+      'The customers table is the left table because it appears after FROM.',
+      'The orders table is the right table because it appears after RIGHT JOIN.',
+      'RIGHT JOIN returns every order, even if there is no matching customer record.',
+      'When an order has a matching customer, the customer information is displayed.',
+      'If an order has no matching customer, the customer columns contain NULL.',
+      'The ON condition tells SQL how the two tables are related.',
+      'RIGHT JOIN is useful when all records from the right table must be included.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.order_id FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+
+  hint: 'Use RIGHT JOIN to keep all records from the table written after RIGHT JOIN.',
+
+  difficulty: 'Medium',
+
+  quiz: {
+    question: 'What does a RIGHT JOIN return?',
+    options: [
+      'Only matching records from both tables',
+      'All records from the left table',
+      'All records from the right table and matching records from the left table',
+      'Only records that do not match'
+    ],
+    correctAnswer: 2,
+    explanation: 'RIGHT JOIN returns all records from the right table and matching records from the left table. If there is no match, NULL is returned for the left table columns.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display all orders and their customer names using RIGHT JOIN.',
+      query: 'SELECT customers.name, orders.order_id FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use RIGHT JOIN between customers and orders.'
+    },
+    {
+      id: 2,
+      description: 'Display all orders and their status along with customer names.',
+      query: 'SELECT customers.name, orders.status FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Keep all orders and match customer information.'
+    },
+    {
+      id: 3,
+      description: 'Display all orders and their order dates along with customer names.',
+      query: 'SELECT customers.name, orders.order_date FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use orders as the right table.'
+    },
+    {
+      id: 4,
+      description: 'Display all orders with their customer emails.',
+      query: 'SELECT customers.email, orders.order_id FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Select email from customers and order_id from orders.'
+    },
+    {
+      id: 5,
+      description: 'Display all orders along with their customer names and status.',
+      query: 'SELECT customers.name, orders.status FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use RIGHT JOIN and match customers.id with orders.customer_id.'
+    }
+  ]
+},
+{
+  id: 50,
+  name: 'Lesson 50',
+  title: 'FULL OUTER JOIN - Combining All Records from Both Tables',
+  description: 'Learn how FULL OUTER JOIN returns all records from both tables, including matching and non-matching records.',
+
+  content: {
+    points: [
+      'FULL OUTER JOIN is used to combine records from two tables.',
+      'It returns all records from both tables.',
+      'Matching records are combined into one row.',
+      'If there is no matching record, NULL values are shown for the missing side.',
+      'FULL OUTER JOIN is useful when we want both matched and unmatched records from both tables.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2\nFROM table1\nFULL OUTER JOIN table2\nON table1.common_column = table2.common_column;',
+
+    example: 'SELECT customers.name, orders.id\nFROM customers\nFULL OUTER JOIN orders\nON customers.id = orders.customer_id;',
+
+    explanation: [
+      'The customers table contains customer information.',
+      'The orders table contains order information.',
+      'customers.id and orders.customer_id are used to match the records.',
+      'FULL OUTER JOIN returns customers who have matching orders.',
+      'It also includes customers who do not have any matching order.',
+      'It also includes orders that do not have a matching customer.',
+      'NULL values appear when there is no matching record on one side.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.id FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+
+  hint: 'Use FULL OUTER JOIN between customers and orders and match customers.id with orders.customer_id.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What does a FULL OUTER JOIN return?',
+    options: [
+      'Only matching records',
+      'All records from the left table',
+      'All records from both tables',
+      'Only records from the right table'
+    ],
+    correctAnswer: 2,
+    explanation: 'FULL OUTER JOIN returns all records from both tables, including matching and non-matching records.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display customer names and order IDs using FULL OUTER JOIN.',
+      query: 'SELECT customers.name, orders.id FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Join customers and orders using customers.id and orders.customer_id.'
+    },
+    {
+      id: 2,
+      description: 'Display customer names and order status using FULL OUTER JOIN.',
+      query: 'SELECT customers.name, orders.status FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use FULL OUTER JOIN and select name and status.'
+    },
+    {
+      id: 3,
+      description: 'Display customer emails and order dates using FULL OUTER JOIN.',
+      query: 'SELECT customers.email, orders.order_date FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Match customers.id with orders.customer_id.'
+    },
+    {
+      id: 4,
+      description: 'Display customer names and order dates using FULL OUTER JOIN.',
+      query: 'SELECT customers.name, orders.order_date FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Use FULL OUTER JOIN between customers and orders.'
+    },
+    {
+      id: 5,
+      description: 'Display customer names and order statuses using FULL OUTER JOIN.',
+      query: 'SELECT customers.name, orders.status FROM customers FULL OUTER JOIN orders ON customers.id = orders.customer_id;',
+      hint: 'Select name and status and match the customer IDs.'
+    }
+  ]
+},
+{
+  id: 51,
+  name: 'Lesson 51',
+  title: 'CROSS JOIN - Combining Every Row from Both Tables',
+  description: 'Learn how CROSS JOIN combines every row from one table with every row from another table.',
+
+  content: {
+    points: [
+      'CROSS JOIN combines every row of the first table with every row of the second table.',
+      'It produces all possible combinations of rows.',
+      'CROSS JOIN does not require an ON condition.',
+      'The number of rows in the result is the number of rows in the first table multiplied by the number of rows in the second table.'
+    ],
+
+    syntax: 'SELECT columns\nFROM table1\nCROSS JOIN table2;',
+
+    example: 'SELECT customers.name, products.name\nFROM customers\nCROSS JOIN products;',
+
+    explanation: [
+      'The customers table is combined with the products table.',
+      'Every customer is paired with every product.',
+      'No matching condition is required.',
+      'If there are 5 customers and 5 products, the result can contain 25 combinations.',
+      'CROSS JOIN is useful when all possible combinations are required.'
+    ]
+  },
+
+  query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+
+  hint: 'Use CROSS JOIN between customers and products. No ON condition is needed.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What does CROSS JOIN produce?',
+    options: [
+      'Only matching records',
+      'Only unmatched records',
+      'All possible combinations of rows',
+      'Only records from the first table'
+    ],
+    correctAnswer: 2,
+    explanation: 'CROSS JOIN produces every possible combination of rows from the two tables.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display every possible combination of customers and products.',
+      query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+      hint: 'Use CROSS JOIN between customers and products.'
+    },
+    {
+      id: 2,
+      description: 'Combine every customer with every product.',
+      query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+      hint: 'CROSS JOIN does not need an ON condition.'
+    },
+    {
+      id: 3,
+      description: 'Show all possible customer-product combinations.',
+      query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+      hint: 'Use CROSS JOIN to create all combinations.'
+    },
+    {
+      id: 4,
+      description: 'Display customer names with every product name.',
+      query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+      hint: 'Combine customers and products using CROSS JOIN.'
+    },
+    {
+      id: 5,
+      description: 'Generate all possible combinations between customers and products.',
+      query: 'SELECT customers.name, products.name FROM customers CROSS JOIN products;',
+      hint: 'Use CROSS JOIN without an ON condition.'
+    }
+  ]
+},
+{
+  id: 52,
+  name: 'Lesson 52',
+  title: 'SELF JOIN - Joining a Table with Itself',
+  description: 'Learn how SELF JOIN is used to compare or relate records within the same table.',
+
+  content: {
+    points: [
+      'SELF JOIN is a join in which a table is joined with itself.',
+      'It is useful when records in the same table are related to each other.',
+      'SELF JOIN uses table aliases to treat the same table as two separate tables.',
+      'The ON condition is used to specify how the records should be matched.',
+      'SELF JOIN is commonly used for hierarchical data such as employees and their managers.'
+    ],
+
+    syntax: 'SELECT a.column1, b.column2\nFROM table_name a\nINNER JOIN table_name b\nON a.common_column = b.common_column;',
+
+    example: 'SELECT e1.name AS Employee, e2.name AS Manager\nFROM employees e1\nINNER JOIN employees e2\nON e1.manager_id = e2.id;',
+
+    explanation: [
+      'The employees table is used twice in the query.',
+      'The aliases e1 and e2 represent two different uses of the same table.',
+      'e1 represents the employee and e2 represents the manager.',
+      'The ON condition matches the employee manager_id with the manager id.',
+      'SELF JOIN is useful for finding relationships between records in the same table.'
+    ]
+  },
+
+  query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+
+  hint: 'Use the employees table twice with different aliases and match manager_id with id.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What is a SELF JOIN?',
+    options: [
+      'A join between two different databases',
+      'A join of a table with itself',
+      'A join that returns only NULL values',
+      'A join that does not use aliases'
+    ],
+    correctAnswer: 1,
+    explanation: 'SELF JOIN joins a table with itself, usually using different aliases.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display employees and their managers using SELF JOIN.',
+      query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+      hint: 'Use the employees table twice with aliases.'
+    },
+    {
+      id: 2,
+      description: 'Display employee names and manager names using SELF JOIN.',
+      query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+      hint: 'Match manager_id of one employee with id of another employee.'
+    },
+    {
+      id: 3,
+      description: 'Find the relationship between employees and their managers.',
+      query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+      hint: 'Use two aliases for the employees table.'
+    },
+    {
+      id: 4,
+      description: 'Display each employee along with their manager.',
+      query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+      hint: 'Use SELF JOIN and match manager_id with id.'
+    },
+    {
+      id: 5,
+      description: 'Use SELF JOIN to display employee and manager names.',
+      query: 'SELECT e1.name AS Employee, e2.name AS Manager FROM employees e1 INNER JOIN employees e2 ON e1.manager_id = e2.id;',
+      hint: 'Join employees with itself using aliases e1 and e2.'
+    }
+  ]
+},
+
+{
+  id: 53,
+  name: 'Lesson 53',
+  title: 'Multiple Table Joins - Joining More Than Two Tables',
+  description: 'Learn how to combine data from three or more tables using multiple JOIN clauses.',
+
+  content: {
+    points: [
+      'Multiple Table Joins are used to combine data from three or more tables.',
+      'More than one JOIN clause can be used in a single SQL query.',
+      'Each JOIN connects one table with another related table.',
+      'The ON clause specifies the columns used to connect the tables.',
+      'Multiple Table Joins are useful when required information is stored in different tables.',
+      'They help retrieve related information from several tables in a single query.'
+    ],
+
+    syntax: 'SELECT table1.column1, table2.column2, table3.column3\nFROM table1\nINNER JOIN table2\nON table1.common_column = table2.common_column\nINNER JOIN table3\nON table2.common_column = table3.common_column;',
+
+    example: 'SELECT customers.name, orders.id, orders.status\nFROM customers\nINNER JOIN orders\nON customers.id = orders.customer_id\nINNER JOIN products\nON orders.product_id = products.id;',
+
+    explanation: [
+      'The query combines three tables: customers, orders, and products.',
+      'The customers table is first joined with the orders table.',
+      'The customers.id and orders.customer_id columns are used to connect the first two tables.',
+      'The orders table is then joined with the products table.',
+      'Each ON condition specifies how the related tables should be connected.',
+      'Multiple Table Joins allow information from several related tables to be displayed together.'
+    ]
+  },
+
+  query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+
+  hint: 'Use two INNER JOIN clauses to connect customers, orders, and products.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'Why are Multiple Table Joins used?',
+    options: [
+      'To delete multiple tables',
+      'To combine data from three or more related tables',
+      'To create a new database',
+      'To remove duplicate records'
+    ],
+    correctAnswer: 1,
+    explanation: 'Multiple Table Joins combine related data from three or more tables using multiple JOIN clauses.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display customer names, order IDs, and order status using multiple table joins.',
+      query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+      hint: 'Use two INNER JOIN clauses to connect the three tables.'
+    },
+    {
+      id: 2,
+      description: 'Combine customers, orders, and products using multiple INNER JOINs.',
+      query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+      hint: 'Connect customers with orders and orders with products.'
+    },
+    {
+      id: 3,
+      description: 'Display information from customers, orders, and products together.',
+      query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+      hint: 'Use multiple JOIN clauses with the related columns.'
+    },
+    {
+      id: 4,
+      description: 'Display customer names along with their order information using multiple table joins.',
+      query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+      hint: 'Join all three tables using their related ID columns.'
+    },
+    {
+      id: 5,
+      description: 'Retrieve related information from three tables using INNER JOIN.',
+      query: 'SELECT customers.name, orders.id, orders.status FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN products ON orders.product_id = products.id;',
+      hint: 'Use two INNER JOIN clauses to connect the tables.'
+    }
+  ]
+},
+{
+  id: 54,
+  name: 'Lesson 54',
+  title: 'What is a Subquery? - Query Inside Another Query',
+  description: 'Learn what a subquery is and how a query can be used inside another SQL query.',
+
+  content: {
+    points: [
+      'A subquery is a query written inside another SQL query.',
+      'The inner query is called the subquery, and the outer query is called the main query.',
+      'A subquery is usually written inside parentheses.',
+      'The result of the subquery can be used by the main query.',
+      'Subqueries are useful when the result of one query is needed to perform another query.',
+      'Subqueries can be used with commands such as SELECT, WHERE, and other SQL clauses.'
+    ],
+
+    syntax: 'SELECT columns\nFROM table_name\nWHERE column_name = (SELECT column_name\nFROM table_name\nWHERE condition);',
+
+    example: 'SELECT name, salary\nFROM employees\nWHERE salary = (SELECT MAX(salary)\nFROM employees);',
+
+    explanation: [
+      'The inner query finds the maximum salary from the employees table.',
+      'The outer query finds the employee whose salary is equal to that maximum salary.',
+      'The subquery is written inside parentheses.',
+      'The result of the inner query is used by the outer query.',
+      'This allows us to solve a problem using more than one query.'
+    ]
+  },
+
+  query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+
+  hint: 'Use a subquery inside WHERE to find the employee with the maximum salary.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What is a subquery?',
+    options: [
+      'A query written inside another query',
+      'A command used to delete a database',
+      'A command used to create a table',
+      'A query that can only contain INSERT'
+    ],
+    correctAnswer: 0,
+    explanation: 'A subquery is a query written inside another SQL query.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display the employee with the highest salary using a subquery.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use MAX(salary) inside a subquery.'
+    },
+    {
+      id: 2,
+      description: 'Find the employee whose salary is equal to the highest salary.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use a subquery with MAX().'
+    },
+    {
+      id: 3,
+      description: 'Use a subquery to find the employee with the maximum salary.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Place the MAX(salary) query inside the WHERE condition.'
+    },
+    {
+      id: 4,
+      description: 'Display the name and salary of the highest-paid employee using a subquery.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use SELECT name, salary and compare salary with a subquery.'
+    },
+    {
+      id: 5,
+      description: 'Find the highest-paid employee using a query inside another query.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use a subquery with MAX(salary).'
+    }
+  ]
+},
+{
+  id: 55,
+  name: 'Lesson 55',
+  title: 'Single-row Subquery - Returning One Value',
+  description: 'Learn how to use a subquery that returns only one row or one value.',
+
+  content: {
+    points: [
+      'A single-row subquery returns only one row from the inner query.',
+      'It is commonly used with comparison operators such as =, >, <, >=, and <=.',
+      'The outer query uses the single value returned by the subquery.',
+      'The subquery is usually written inside parentheses.',
+      'Single-row subqueries are useful when comparing a value with one specific result.'
+    ],
+
+    syntax: 'SELECT columns\nFROM table_name\nWHERE column_name = (SELECT column_name\nFROM table_name\nWHERE condition);',
+
+    example: 'SELECT name, salary\nFROM employees\nWHERE salary = (SELECT MAX(salary)\nFROM employees);',
+
+    explanation: [
+      'The inner query finds the maximum salary from the employees table.',
+      'The subquery returns one value: the highest salary.',
+      'The outer query compares each employee salary with that value.',
+      'The employee whose salary matches the maximum salary is returned.',
+      'Since the subquery returns one value, it can be used with the = operator.'
+    ]
+  },
+
+  query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+
+  hint: 'Use a subquery with MAX(salary) that returns one value and compare it using =.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What does a single-row subquery return?',
+    options: [
+      'Multiple tables',
+      'Only one row or one value',
+      'All rows from the database',
+      'Only column names'
+    ],
+    correctAnswer: 1,
+    explanation: 'A single-row subquery returns one row or one value that can be used by the outer query.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display the employee with the highest salary using a single-row subquery.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use MAX(salary) in a subquery and compare salary using =.'
+    },
+    {
+      id: 2,
+      description: 'Find the employee whose salary equals the maximum salary.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use a single-row subquery with MAX().'
+    },
+    {
+      id: 3,
+      description: 'Display the name and salary of the highest-paid employee.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'The inner query should return the highest salary.'
+    },
+    {
+      id: 4,
+      description: 'Use a single-row subquery to find the highest-paid employee.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use = with the result of the subquery.'
+    },
+    {
+      id: 5,
+      description: 'Find the employee whose salary matches the maximum salary.',
+      query: 'SELECT name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);',
+      hint: 'Use MAX(salary) inside the subquery.'
+    }
+  ]
+},
+{
+  id: 56,
+  name: 'Lesson 56',
+  title: 'Multiple-row Subquery - Returning Multiple Values',
+  description: 'Learn how to use a subquery that returns multiple rows or values.',
+
+  content: {
+    points: [
+      'A multiple-row subquery returns more than one row from the inner query.',
+      'It is commonly used with operators such as IN, ANY, and ALL.',
+      'The outer query uses the values returned by the subquery.',
+      'A multiple-row subquery is useful when the result contains several possible values.',
+      'The subquery is usually written inside parentheses.'
+    ],
+
+    syntax: 'SELECT columns\nFROM table_name\nWHERE column_name IN (SELECT column_name\nFROM table_name\nWHERE condition);',
+
+    example: 'SELECT name, salary\nFROM employees\nWHERE department IN (SELECT department\nFROM employees\nWHERE salary > 50000);',
+
+    explanation: [
+      'The inner query finds the departments of employees whose salary is greater than 50000.',
+      'The subquery can return multiple department values.',
+      'The outer query finds employees whose department matches any department returned by the subquery.',
+      'The IN operator is useful when the subquery returns multiple values.',
+      'This allows the outer query to work with a list of values returned by the inner query.'
+    ]
+  },
+
+  query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+
+  hint: 'Use IN with a subquery that returns multiple department values.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'Which operator is commonly used with a multiple-row subquery?',
+    options: [
+      'IN',
+      'CREATE',
+      'DROP',
+      'ALTER'
+    ],
+    correctAnswer: 0,
+    explanation: 'IN is commonly used with a multiple-row subquery because it can compare a value with multiple values returned by the subquery.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Display employees who belong to departments where an employee earns more than 50000.',
+      query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+      hint: 'Use IN with a subquery that finds departments of employees earning more than 50000.'
+    },
+    {
+      id: 2,
+      description: 'Find employees whose department is included in the departments returned by the subquery.',
+      query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+      hint: 'Use department IN with a subquery.'
+    },
+    {
+      id: 3,
+      description: 'Use a multiple-row subquery to find employees from selected departments.',
+      query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+      hint: 'The inner query should return department values.'
+    },
+    {
+      id: 4,
+      description: 'Display employee names and salaries using a multiple-row subquery.',
+      query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+      hint: 'Use IN to compare department with multiple returned values.'
+    },
+    {
+      id: 5,
+      description: 'Find employees whose departments have employees earning more than 50000.',
+      query: 'SELECT name, salary FROM employees WHERE department IN (SELECT department FROM employees WHERE salary > 50000);',
+      hint: 'Use a subquery with department and salary > 50000.'
+    }
+  ]
+},
+{
+  id: 57,
+  name: 'Lesson 57',
+  title: 'UNION - Combining Results of Multiple Queries',
+  description: 'Learn how UNION combines the results of two or more SELECT queries into a single result.',
+
+  content: {
+    points: [
+      'UNION is used to combine the results of two or more SELECT queries.',
+      'It removes duplicate rows from the final result.',
+      'The SELECT queries used with UNION should have the same number of columns.',
+      'The corresponding columns should have compatible data types.',
+      'UNION is useful when we want to combine similar data from different queries.'
+    ],
+
+    syntax: 'SELECT column1, column2\nFROM table1\nUNION\nSELECT column1, column2\nFROM table2;',
+
+    example: 'SELECT name, email\nFROM customers\nUNION\nSELECT name, email\nFROM users;',
+
+    explanation: [
+      'The first SELECT query retrieves name and email from the customers table.',
+      'The second SELECT query retrieves name and email from the users table.',
+      'UNION combines the results of both SELECT queries.',
+      'Duplicate rows are removed from the final result.',
+      'Both queries contain the same number of columns with compatible data types.'
+    ]
+  },
+
+  query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+
+  hint: 'Use two SELECT statements with the same number of columns and connect them using UNION.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What does UNION do in SQL?',
+    options: [
+      'Deletes duplicate tables',
+      'Combines results of multiple SELECT queries',
+      'Creates a new database',
+      'Updates records in a table'
+    ],
+    correctAnswer: 1,
+    explanation: 'UNION combines the results of two or more SELECT queries and removes duplicate rows.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Combine names and emails from customers and users using UNION.',
+      query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+      hint: 'Use two SELECT queries with the same columns and connect them using UNION.'
+    },
+    {
+      id: 2,
+      description: 'Combine the results of customers and users into one result.',
+      query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+      hint: 'Use UNION between the two SELECT statements.'
+    },
+    {
+      id: 3,
+      description: 'Display unique names and emails from both tables using UNION.',
+      query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+      hint: 'UNION automatically removes duplicate rows.'
+    },
+    {
+      id: 4,
+      description: 'Combine customer and user information using two SELECT queries.',
+      query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+      hint: 'Both SELECT queries should have the same number of columns.'
+    },
+    {
+      id: 5,
+      description: 'Use UNION to combine name and email records from two tables.',
+      query: 'SELECT name, email FROM customers UNION SELECT name, email FROM users;',
+      hint: 'Write two SELECT statements and place UNION between them.'
+    }
+  ]
+},
+{
+  id: 58,
+  name: 'Lesson 58',
+  title: 'Views - Creating Virtual Tables',
+  description: 'Learn how SQL Views are used to store a query as a virtual table for easier data access.',
+
+  content: {
+    points: [
+      'A View is a virtual table created from the result of a SQL query.',
+      'A View does not usually store the actual data separately; it displays data from one or more existing tables.',
+      'Views can simplify complex SQL queries.',
+      'A View can be used like a table in SELECT queries.',
+      'Views are useful for improving data organization and controlling access to specific data.',
+      'A View is created using the CREATE VIEW statement.'
+    ],
+
+    syntax: 'CREATE VIEW view_name AS\nSELECT column1, column2\nFROM table_name\nWHERE condition;',
+
+    example: 'CREATE VIEW active_customers AS\nSELECT id, name, email\nFROM customers\nWHERE is_active = 1;',
+
+    explanation: [
+      'The CREATE VIEW statement creates a new View named active_customers.',
+      'The View selects id, name, and email from the customers table.',
+      'Only customers whose is_active value is 1 are included.',
+      'The View can later be queried like a table.',
+      'For example, SELECT * FROM active_customers; can be used to view the data.'
+    ]
+  },
+
+  query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+
+  hint: 'Use CREATE VIEW followed by the View name and place the SELECT query after AS.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What is a View in SQL?',
+    options: [
+      'A physical copy of a database',
+      'A virtual table based on a SQL query',
+      'A command used to delete a table',
+      'A type of database constraint'
+    ],
+    correctAnswer: 1,
+    explanation: 'A View is a virtual table created from the result of a SQL query.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a View named active_customers containing active customer records.',
+      query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+      hint: 'Use CREATE VIEW with the customers table and filter active customers.'
+    },
+    {
+      id: 2,
+      description: 'Create a View that displays id, name, and email of active customers.',
+      query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+      hint: 'Use CREATE VIEW and SELECT the required columns.'
+    },
+    {
+      id: 3,
+      description: 'Create a virtual table containing active customers.',
+      query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+      hint: 'Create the View using the CREATE VIEW statement.'
+    },
+    {
+      id: 4,
+      description: 'Create a View named active_customers using the customers table.',
+      query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+      hint: 'Use AS before the SELECT query.'
+    },
+    {
+      id: 5,
+      description: 'Create a View to show only active customer information.',
+      query: 'CREATE VIEW active_customers AS SELECT id, name, email FROM customers WHERE is_active = 1;',
+      hint: 'Filter customers using is_active = 1.'
+    }
+  ]
+},
+{
+  id: 59,
+  name: 'Lesson 59',
+  title: 'Sequences - Generating Sequential Numbers',
+  description: 'Learn how SQL Sequences are used to generate a series of unique numbers automatically.',
+
+  content: {
+    points: [
+      'A Sequence is a database object used to generate a series of numbers automatically.',
+      'Sequences are commonly used to generate unique values for columns such as IDs.',
+      'A Sequence can generate numbers in ascending or descending order.',
+      'The NEXTVAL keyword is used to generate the next value from a Sequence.',
+      'Sequences help avoid manually entering unique numbers.',
+      'Sequences are commonly used in databases such as Oracle and PostgreSQL.'
+    ],
+
+    syntax: 'CREATE SEQUENCE sequence_name\nSTART WITH starting_value\nINCREMENT BY increment_value;',
+
+    example: 'CREATE SEQUENCE customer_seq\nSTART WITH 1\nINCREMENT BY 1;',
+
+    explanation: [
+      'The CREATE SEQUENCE statement creates a Sequence named customer_seq.',
+      'START WITH 1 means the Sequence starts generating numbers from 1.',
+      'INCREMENT BY 1 means each new value increases by 1.',
+      'The next value can be obtained using customer_seq.NEXTVAL in supported databases.',
+      'Sequences are useful for automatically generating unique numeric values.'
+    ]
+  },
+
+  query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+
+  hint: 'Use CREATE SEQUENCE followed by the sequence name, START WITH, and INCREMENT BY.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What is the main purpose of a Sequence?',
+    options: [
+      'To delete records',
+      'To generate a series of numbers automatically',
+      'To combine two tables',
+      'To remove duplicate records'
+    ],
+    correctAnswer: 1,
+    explanation: 'A Sequence is used to generate a series of numbers automatically, often for unique IDs.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a Sequence named customer_seq starting from 1 and increasing by 1.',
+      query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+      hint: 'Use CREATE SEQUENCE with START WITH 1 and INCREMENT BY 1.'
+    },
+    {
+      id: 2,
+      description: 'Create a Sequence for generating customer IDs.',
+      query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+      hint: 'Name the Sequence customer_seq.'
+    },
+    {
+      id: 3,
+      description: 'Create a Sequence that starts at 1 and increments by 1.',
+      query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+      hint: 'Use START WITH and INCREMENT BY.'
+    },
+    {
+      id: 4,
+      description: 'Create a Sequence named customer_seq.',
+      query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+      hint: 'Use the CREATE SEQUENCE command.'
+    },
+    {
+      id: 5,
+      description: 'Generate sequential numbers for customer IDs using a Sequence.',
+      query: 'CREATE SEQUENCE customer_seq START WITH 1 INCREMENT BY 1;',
+      hint: 'Create customer_seq with starting value 1 and increment 1.'
+    }
+  ]
+},
+{
+  id: 60,
+  name: 'Lesson 60',
+  title: 'Triggers - Automatically Executing Actions',
+  description: 'Learn how SQL Triggers automatically execute an action when a specified database event occurs.',
+
+  content: {
+    points: [
+      'A Trigger is a database object that automatically executes when a specified event occurs.',
+      'Triggers can execute automatically when INSERT, UPDATE, or DELETE operations occur.',
+      'A Trigger is associated with a specific table or database event.',
+      'Triggers are useful for maintaining data consistency and automatically performing related actions.',
+      'A Trigger can execute before or after a database operation depending on the database system.',
+      'Triggers are commonly used for auditing, validation, and automatic data updates.'
+    ],
+
+    syntax: 'CREATE TRIGGER trigger_name\nBEFORE | AFTER INSERT | UPDATE | DELETE\nON table_name\nFOR EACH ROW\ntrigger_action;',
+
+    example: 'CREATE TRIGGER check_salary\nBEFORE INSERT ON employees\nFOR EACH ROW\ntrigger_action;',
+
+    explanation: [
+      'The CREATE TRIGGER statement creates a new Trigger.',
+      'check_salary is the name of the Trigger.',
+      'BEFORE INSERT means the Trigger runs before a new employee record is inserted.',
+      'The Trigger is associated with the employees table.',
+      'FOR EACH ROW means the Trigger can execute for each affected row.',
+      'Triggers can be used to automatically perform actions when database events occur.'
+    ]
+  },
+
+  query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+
+  hint: 'Use CREATE TRIGGER followed by the trigger name and specify when and on which table it should execute.',
+
+  difficulty: 'Hard',
+
+  quiz: {
+    question: 'What is the main purpose of a SQL Trigger?',
+    options: [
+      'To automatically execute an action when a specified database event occurs',
+      'To manually display all records from a table',
+      'To create a new database',
+      'To permanently remove a database table'
+    ],
+    correctAnswer: 0,
+    explanation: 'A Trigger automatically executes an action when a specified database event such as INSERT, UPDATE, or DELETE occurs.'
+  },
+
+  practiceQuestions: [
+    {
+      id: 1,
+      description: 'Create a Trigger named check_salary that runs before inserting a record into employees.',
+      query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+      hint: 'Use CREATE TRIGGER with BEFORE INSERT and the employees table.'
+    },
+    {
+      id: 2,
+      description: 'Create a Trigger that runs before an INSERT operation on employees.',
+      query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+      hint: 'Specify BEFORE INSERT after the Trigger name.'
+    },
+    {
+      id: 3,
+      description: 'Create a Trigger named check_salary for the employees table.',
+      query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+      hint: 'Use CREATE TRIGGER and associate it with employees.'
+    },
+    {
+      id: 4,
+      description: 'Create a Trigger that executes for each row before inserting employee data.',
+      query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+      hint: 'Use FOR EACH ROW after specifying the table.'
+    },
+    {
+      id: 5,
+      description: 'Create a Trigger named check_salary that executes before employee records are inserted.',
+      query: 'CREATE TRIGGER check_salary BEFORE INSERT ON employees FOR EACH ROW trigger_action;',
+      hint: 'Use BEFORE INSERT ON employees in the Trigger definition.'
+    }
+  ]
+},
   ];
 
   get currentLesson(): Lesson {
