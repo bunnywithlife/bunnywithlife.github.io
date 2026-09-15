@@ -56,11 +56,10 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 7px 15px;
-  gap: 1px;
+  padding: 7px 12px;
+  gap: 2px;
   background-color: #0f172a;
   color: #cbd5e1;
-  font-size: 11px;
 }
 
 .site-footer h2 {
@@ -72,20 +71,12 @@ body {
 .footer-tagline {
   margin: 0;
   font-size: 11px;
-  font-weight: 500;
-}
-
-.footer-description {
-  margin: 1px 0;
-  max-width: 600px;
-  line-height: 14px;
-  font-size: 10px;
 }
 
 .footer-links {
   display: flex;
   gap: 15px;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 
 .footer-links button {
@@ -101,64 +92,9 @@ body {
   text-decoration: underline;
 }
 
-.footer-message {
-  margin: 1px 0 0;
-  font-style: italic;
-  font-size: 10px;
-}
-
 .footer-copyright {
   margin: 0;
   font-size: 9px;
-}
-
-.site-footer h2 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 18px;
-}
-
-.footer-tagline {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.footer-description {
-  margin: 1px 0 2px;
-  max-width: 600px;
-  line-height: 16px;
-  font-size: 11px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 16px;
-  margin: 1px 0;
-}
-
-.footer-links button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 1px 4px;
-}
-
-.footer-links button:hover {
-  text-decoration: underline;
-}
-
-.footer-message {
-  margin: 2px 0 0;
-  font-style: italic;
-  font-size: 11px;
-}
-
-.footer-copyright {
-  margin: 0;
-  font-size: 10px;
 }
 
 .site-footer span:first-child {
