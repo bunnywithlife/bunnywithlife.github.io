@@ -276,6 +276,11 @@
           <div class="feedback" [ngClass]="{ success: taskCompleted, error: !taskCompleted }">
             {{ feedbackMessage }}
           </div>
+
+          <div class="execution-output" *ngIf="executionSummary">
+            <h4>Query Result</h4>
+            <pre>{{ executionSummary }}</pre>
+          </div>
         </div>
 
         <!-- Quiz Section -->

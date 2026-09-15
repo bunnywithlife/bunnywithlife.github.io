@@ -55,6 +55,9 @@ export class App {
   userXP: number = 0;
   currentStreak: number = 0;
 
+  private readonly apiBaseUrl = 'http://localhost:3000/api';
+  executionSummary: string = '';
+
   activeTab: TabType = 'home';
   sqlInput: string = '';
   feedbackMessage: string = '';
@@ -5164,6 +5167,24 @@ export class App {
     },
   ];
 
+  private normalizeSql(value: string): string {
+    return value.replace(/;\s*$/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  private matchesLessonAnswer(query: string, expected: string): boolean {
+    const normalizedQuery = this.normalizeSql(query);
+    const normalizedExpected = this.normalizeSql(expected);
+
+    if (normalizedQuery === normalizedExpected) {
+      return true;
+    }
+
+    const queryNoParens = normalizedQuery.replace(/[()]/g, '');
+    const expectedNoParens = normalizedExpected.replace(/[()]/g, '');
+
+    return queryNoParens === expectedNoParens;
+  }
+
   get currentLesson(): Lesson {
     return this.lessons[this.currentLessonIndex];
   }
@@ -5181,16 +5202,51 @@ export class App {
     this.taskCompleted = false;
   }
 
-  checkQuery(): void {
-    if (
-      this.sqlInput.trim().toLowerCase() === this.currentPracticeQuestion.query.trim().toLowerCase()
-    ) {
-      this.feedbackMessage = 'Correct! Practice query is right.';
-      this.taskCompleted = true;
-      this.incrementXP(50);
-      this.updateProgress(true);
-    } else {
-      this.feedbackMessage = 'Not correct. Try again or use the hint.';
+  async checkQuery(): Promise<void> {
+    const query = this.sqlInput.trim();
+    if (!query) {
+      this.feedbackMessage = 'Please enter a SQL query before running it.';
+      this.taskCompleted = false;
+      return;
+    }
+
+    try {
+      const response = await fetch(`${this.apiBaseUrl}/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Query failed');
+      }
+
+      const rows = data.rows ?? [];
+      const output = rows.length
+        ? rows
+            .slice(0, 10)
+            .map((row: Record<string, unknown>) => Object.values(row).join(' | '))
+            .join('\n')
+        : 'Query executed successfully. No rows returned.';
+
+      this.executionSummary = output;
+
+      if (this.matchesLessonAnswer(query, this.currentPracticeQuestion.query)) {
+        this.feedbackMessage = 'Correct! Practice query is right.';
+        this.taskCompleted = true;
+        this.incrementXP(50);
+        this.updateProgress(true);
+        return;
+      }
+
+      this.feedbackMessage =
+        'Query executed successfully, but it does not match the exercise answer yet.';
+      this.taskCompleted = false;
+    } catch (error: any) {
+      this.feedbackMessage = `SQL error: ${error?.message ?? 'Invalid query'}`;
+      this.executionSummary = 'Query failed to execute.';
       this.taskCompleted = false;
     }
   }
@@ -5246,6 +5302,7 @@ export class App {
     this.showNotes = false;
     this.selectedQuizAnswer = null;
     this.quizAnswered = false;
+    this.executionSummary = 'Backend ready. Run a query to begin.';
   }
 
   toggleNotes(): void {
@@ -5257,7 +5314,7 @@ export class App {
   }
 
   updateProgress(success: boolean): void {
-    fetch('/api/progress', {
+    fetch(`${this.apiBaseUrl}/progress`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
