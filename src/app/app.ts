@@ -65,7 +65,6 @@ export class App {
   quizFeedbackMessage: string = '';
   taskCompleted: boolean = false;
   showNotes: boolean = false;
-  showSchema: boolean = false;
 
   openLessonFromRoadmap(index: number): void {
     this.currentLessonIndex = index;
@@ -79,7 +78,6 @@ export class App {
   selectedQuizAnswer: number | null = null;
   quizAnswered: boolean = false;
   selectedPracticeQuestionIndex: number = 0;
-  selectedTableIndex: number = 0;
 
   tables: TableSchema[] = [
     {
@@ -5239,9 +5237,10 @@ export class App {
 
       if (this.matchesLessonAnswer(query, this.currentPracticeQuestion.query)) {
         this.feedbackMessage = 'Correct! Practice query is right.';
-        this.taskCompleted = true;
-        this.incrementXP(50);
-        this.updateProgress(true);
+        if (!this.taskCompleted) {
+          this.taskCompleted = true;
+          this.recordSuccess(50);
+        }
         return;
       }
 
@@ -5277,8 +5276,7 @@ export class App {
     if (this.selectedQuizAnswer === this.currentLesson.quiz.correctAnswer) {
       this.quizFeedbackMessage = `Correct! ${this.currentLesson.quiz.explanation}`;
       this.quizAnswered = true;
-      this.incrementXP(30);
-      this.updateProgress(true);
+      this.recordSuccess(30);
     } else {
       this.quizFeedbackMessage = `Incorrect. ${this.currentLesson.quiz.explanation}`;
       this.quizAnswered = true;
@@ -5317,6 +5315,13 @@ export class App {
 
   incrementXP(amount: number): void {
     this.userXP += amount;
+    this.userLevel = Math.floor(this.userXP / 100) + 1;
+  }
+
+  recordSuccess(xp: number): void {
+    this.incrementXP(xp);
+    this.currentStreak += 1;
+    this.updateProgress(true);
   }
 
   updateProgress(success: boolean): void {
@@ -5336,17 +5341,5 @@ export class App {
       .catch((error) => {
         console.error('Error saving progress:', error);
       });
-  }
-
-  toggleSchema(): void {
-    this.showSchema = !this.showSchema;
-  }
-
-  selectTable(index: number): void {
-    this.selectedTableIndex = index;
-  }
-
-  get currentTable(): TableSchema {
-    return this.tables[this.selectedTableIndex];
   }
 }

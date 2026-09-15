@@ -1,37 +1,42 @@
 <!-- app.component.html -->
 <div class="game-container">
-  <!-- Header / Stats Bar -->
-  <header class="stats-bar">
-    <div class="stat">
-      Level: <strong>{{ userLevel }}</strong>
-    </div>
-    <div class="stat">
-      XP: <strong>{{ userXP }}</strong>
-    </div>
-    <div class="stat">
-      Streak: <strong>{{ currentStreak }}</strong>
-    </div>
-  </header>
+  <div class="top-navigation">
+    <!-- Tab Navigation -->
+    <nav class="tab-container">
+      <button class="tab-button" [class.active]="activeTab === 'home'" (click)="switchTab('home')">
+        Home
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 'lessons'"
+        (click)="switchTab('lessons')"
+      >
+        Lessons
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 'roadmap'"
+        (click)="switchTab('roadmap')"
+      >
+        Roadmap
+      </button>
+    </nav>
 
-  <!-- Tab Navigation -->
-  <div class="tab-container">
-    <button class="tab-button" [class.active]="activeTab === 'home'" (click)="switchTab('home')">
-      Home
-    </button>
-    <button
-      class="tab-button"
-      [class.active]="activeTab === 'lessons'"
-      (click)="switchTab('lessons')"
-    >
-      Lessons
-    </button>
-    <button
-      class="tab-button"
-      [class.active]="activeTab === 'roadmap'"
-      (click)="switchTab('roadmap')"
-    >
-      Roadmap
-    </button>
+    <!-- Progress Summary -->
+    <header class="stats-bar">
+      <div class="stat">
+        <span>Level</span>
+        <strong>{{ userLevel }}</strong>
+      </div>
+      <div class="stat">
+        <span>XP</span>
+        <strong>{{ userXP }}</strong>
+      </div>
+      <div class="stat">
+        <span>Streak</span>
+        <strong>{{ currentStreak }}</strong>
+      </div>
+    </header>
   </div>
 
   <!-- Main Workspace -->
@@ -192,65 +197,18 @@
 
       <!-- Right: SQL Editor & Quiz Panel -->
       <section class="terminal-panel">
-        <!-- Schema Reference Button -->
-        <button class="btn-schema" (click)="toggleSchema()">
-          {{ showSchema ? '✕ Hide Database Schema' : '📊 View Database Schema' }}
-        </button>
-
-        <!-- Schema Reference Section -->
-        <div class="schema-reference" *ngIf="showSchema">
-          <div class="schema-content">
+        <div class="schema-reference">
+          <div class="schema-header">
             <h3>Database Schema Reference</h3>
-            <p class="schema-description">
-              Click on a table to view its structure and sample data.
-            </p>
+            <p>Use these tables while practicing your SQL queries.</p>
+          </div>
 
-            <!-- Table Selector -->
-            <div class="table-selector">
-              <button
-                *ngFor="let table of tables; let i = index"
-                class="table-btn"
-                [class.active]="selectedTableIndex === i"
-                (click)="selectTable(i)"
-              >
-                {{ table.name }}
-              </button>
-            </div>
-
-            <!-- Current Table Details -->
-            <div class="table-details">
-              <h4>
-                Table: <span class="table-name">{{ currentTable.name }}</span>
-              </h4>
-              <p class="table-desc">{{ currentTable.description }}</p>
-
-              <!-- Columns -->
-              <div class="columns-section">
-                <strong>Columns:</strong>
-                <div class="columns-list">
-                  <span class="column-badge" *ngFor="let col of currentTable.columns">
-                    {{ col }}
-                  </span>
-                </div>
-              </div>
-
-              <!-- Sample Data Table -->
-              <div class="sample-data">
-                <strong>Sample Data:</strong>
-                <div class="table-scroll">
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th *ngFor="let col of currentTable.columns">{{ col }}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let row of currentTable.sampleData">
-                        <td *ngFor="let col of currentTable.columns">{{ row[col] }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+          <div class="schema-grid">
+            <div class="schema-card" *ngFor="let table of tables">
+              <h4>{{ table.name }}</h4>
+              <p>{{ table.description }}</p>
+              <div class="schema-columns">
+                <span *ngFor="let col of table.columns">{{ col }}</span>
               </div>
             </div>
           </div>
@@ -319,4 +277,9 @@
       </section>
     </ng-container>
   </main>
+
+  <footer class="site-footer">
+    <span>Play &amp; Learn SQL</span>
+    <span>Angular frontend &middot; Express API &middot; SQLite database</span>
+  </footer>
 </div>
