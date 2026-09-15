@@ -61,6 +61,8 @@ export class App {
   activeTab: TabType = 'home';
   sqlInput: string = '';
   feedbackMessage: string = '';
+  queryFeedbackMessage: string = '';
+  quizFeedbackMessage: string = '';
   taskCompleted: boolean = false;
   showNotes: boolean = false;
   showSchema: boolean = false;
@@ -5198,14 +5200,16 @@ export class App {
 
   useHint(): void {
     this.userXP = Math.max(0, this.userXP - 20);
-    this.feedbackMessage = `Hint: ${this.currentLesson.hint}`;
+    this.queryFeedbackMessage = `Hint: ${this.currentLesson.hint}`;
+    this.feedbackMessage = this.queryFeedbackMessage;
     this.taskCompleted = false;
   }
 
   async checkQuery(): Promise<void> {
     const query = this.sqlInput.trim();
     if (!query) {
-      this.feedbackMessage = 'Please enter a SQL query before running it.';
+      this.queryFeedbackMessage = 'Please enter a SQL query before running it.';
+      this.feedbackMessage = this.queryFeedbackMessage;
       this.taskCompleted = false;
       return;
     }
@@ -5266,17 +5270,17 @@ export class App {
 
   submitQuizAnswer(): void {
     if (this.selectedQuizAnswer === null) {
-      this.feedbackMessage = 'Please select an option.';
+      this.quizFeedbackMessage = 'Please select an option.';
       return;
     }
 
     if (this.selectedQuizAnswer === this.currentLesson.quiz.correctAnswer) {
-      this.feedbackMessage = `Correct! ${this.currentLesson.quiz.explanation}`;
+      this.quizFeedbackMessage = `Correct! ${this.currentLesson.quiz.explanation}`;
       this.quizAnswered = true;
       this.incrementXP(30);
       this.updateProgress(true);
     } else {
-      this.feedbackMessage = `Incorrect. ${this.currentLesson.quiz.explanation}`;
+      this.quizFeedbackMessage = `Incorrect. ${this.currentLesson.quiz.explanation}`;
       this.quizAnswered = true;
     }
   }
@@ -5297,6 +5301,8 @@ export class App {
 
   resetTask(): void {
     this.sqlInput = '';
+    this.queryFeedbackMessage = '';
+    this.quizFeedbackMessage = '';
     this.feedbackMessage = '';
     this.taskCompleted = false;
     this.showNotes = false;

@@ -274,7 +274,7 @@
 
           <!-- Feedback -->
           <div class="feedback" [ngClass]="{ success: taskCompleted, error: !taskCompleted }">
-            {{ feedbackMessage }}
+            {{ queryFeedbackMessage || feedbackMessage }}
           </div>
 
           <div class="execution-output" *ngIf="executionSummary">
@@ -313,7 +313,7 @@
           </button>
 
           <div class="feedback" [ngClass]="{ success: quizAnswered, error: !quizAnswered }">
-            {{ feedbackMessage }}
+            {{ quizFeedbackMessage }}
           </div>
         </div>
       </section>
