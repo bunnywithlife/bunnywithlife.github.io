@@ -25,6 +25,13 @@
     >
       Lessons
     </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'roadmap'"
+      (click)="switchTab('roadmap')"
+    >
+      Roadmap
+    </button>
   </div>
 
   <!-- Main Workspace -->
@@ -68,6 +75,46 @@
       </section>
     </ng-container>
 
+    <!-- ROADMAP TAB -->
+    <ng-container *ngIf="activeTab === 'roadmap'">
+      <section class="roadmap-page">
+        <div class="roadmap-header">
+          <h1>Learning Roadmap</h1>
+          <p>Follow the lessons in order and open any topic whenever you want to revise.</p>
+        </div>
+
+        <div class="roadmap-grid">
+          <article *ngFor="let lesson of lessons; let i = index" class="roadmap-card">
+            <div class="roadmap-card-top">
+              <span class="roadmap-number">{{ i + 1 }}</span>
+              <span class="difficulty" [ngClass]="'difficulty-' + lesson.difficulty.toLowerCase()">
+                {{ lesson.difficulty }}
+              </span>
+            </div>
+
+            <h3>{{ lesson.name }}: {{ lesson.title }}</h3>
+            <p>{{ lesson.description }}</p>
+
+            <button class="btn-roadmap-open" (click)="openLessonFromRoadmap(i)">Open lesson</button>
+          </article>
+        </div>
+
+        <div class="resources-panel">
+          <h2>Resources & Extras</h2>
+          <p>
+            Add links, notes, cheat sheets, and related materials here as your learning library
+            grows.
+          </p>
+          <ul class="resource-list">
+            <li>SQL cheat sheet</li>
+            <li>Practice exercises</li>
+            <li>Video tutorials</li>
+            <li>Extra reading notes</li>
+          </ul>
+        </div>
+      </section>
+    </ng-container>
+
     <!-- LESSONS TAB -->
     <ng-container *ngIf="activeTab === 'lessons'">
       <!-- Left: Lesson Panel -->
@@ -82,28 +129,28 @@
         </p>
 
         <!-- Lesson Content -->
-      <div class="lesson-content">
+        <div class="lesson-content">
           <h4>What is {{ currentLesson.title }}?</h4>
 
           <ul>
             <li *ngFor="let point of currentLesson.content.points">
-             {{ point }}
+              {{ point }}
             </li>
-         </ul>
+          </ul>
 
-        <h4>Syntax</h4>
-        <pre><code>{{ currentLesson.content.syntax }}</code></pre>
+          <h4>Syntax</h4>
+          <pre><code>{{ currentLesson.content.syntax }}</code></pre>
 
-        <h4>Example</h4>
-        <pre><code>{{ currentLesson.content.example }}</code></pre>
+          <h4>Example</h4>
+          <pre><code>{{ currentLesson.content.example }}</code></pre>
 
-        <h4>Explanation</h4>
-        <ul>
-          <li *ngFor="let point of currentLesson.content.explanation">
-            {{ point }}
-          </li>
-        </ul>
-      </div>
+          <h4>Explanation</h4>
+          <ul>
+            <li *ngFor="let point of currentLesson.content.explanation">
+              {{ point }}
+            </li>
+          </ul>
+        </div>
 
         <!-- Practice Questions -->
         <div class="practice-section">

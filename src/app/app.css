@@ -63,6 +63,117 @@ body {
   border-bottom-color: #1976d2;
 }
 
+.roadmap-page {
+  width: 100%;
+  padding: 2rem;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.roadmap-header {
+  margin-bottom: 1.5rem;
+}
+
+.roadmap-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: #1f2937;
+}
+
+.roadmap-header p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.roadmap-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem 1rem 1.25rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.roadmap-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.roadmap-number {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.roadmap-card h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.roadmap-card p {
+  margin: 0 0 1rem 0;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.btn-roadmap-open {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-roadmap-open:hover {
+  transform: translateY(-1px);
+}
+
+.resources-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.resources-panel h2 {
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+}
+
+.resources-panel p {
+  margin: 0 0 1rem 0;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.resource-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #374151;
+  line-height: 2;
+}
+
 /* Lesson Content Section */
 .lesson-content {
   background-color: #f0f7ff;
