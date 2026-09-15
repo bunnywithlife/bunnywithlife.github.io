@@ -8,17 +8,17 @@
       </button>
       <button
         class="tab-button"
-        [class.active]="activeTab === 'lessons'"
-        (click)="switchTab('lessons')"
-      >
-        Lessons
-      </button>
-      <button
-        class="tab-button"
         [class.active]="activeTab === 'roadmap'"
         (click)="switchTab('roadmap')"
       >
         Roadmap
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 'lessons'"
+        (click)="switchTab('lessons')"
+      >
+        Lessons
       </button>
     </nav>
 
@@ -279,7 +279,31 @@
   </main>
 
   <footer class="site-footer">
-    <span>Play &amp; Learn SQL</span>
-    <span>Angular frontend &middot; Express API &middot; SQLite database</span>
-  </footer>
+
+  <h2>Play &amp; Learn SQL</h2>
+
+  <p class="footer-tagline">
+    Learn SQL &bull; Practice Queries &bull; Master Databases
+  </p>
+
+  <p class="footer-description">
+    Explore interactive lessons, practice SQL queries,
+    and test your knowledge through quizzes.
+  </p>
+
+  <div class="footer-links">
+    <button (click)="switchTab('home')">Home</button>
+    <button (click)="switchTab('roadmap')">Roadmap</button>
+    <button (click)="switchTab('lessons')">Lessons</button>
+  </div>
+
+  <p class="footer-message">
+    Learn at your pace. Practice with confidence.
+  </p>
+
+  <p class="footer-copyright">
+    &copy; 2026 Play &amp; Learn SQL
+  </p>
+
+</footer>
 </div>
