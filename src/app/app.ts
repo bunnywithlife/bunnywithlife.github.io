@@ -41,7 +41,7 @@ interface TableSchema {
   description: string;
 }
 
-type TabType = 'home' | 'lessons' | 'roadmap';
+type TabType = 'home' | 'lessons' | 'roadmap' | 'about';
 
 @Component({
   selector: 'app-root',

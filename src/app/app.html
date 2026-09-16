@@ -20,6 +20,9 @@
       >
         Lessons
       </button>
+      <button class="tab-button" [class.active]="activeTab === 'about'" (click)="switchTab('about')">
+        About
+      </button>
     </nav>
 
     <!-- Progress Summary -->
@@ -116,6 +119,50 @@
             <li>Video tutorials</li>
             <li>Extra reading notes</li>
           </ul>
+        </div>
+      </section>
+    </ng-container>
+
+    <!-- ABOUT TAB -->
+    <ng-container *ngIf="activeTab === 'about'">
+      <section class="about-page">
+        <div class="about-hero">
+          <p class="about-kicker">A practical place to learn</p>
+          <h1>Learn SQL by doing the work.</h1>
+          <p>
+            Play &amp; Learn SQL turns database fundamentals into short lessons, guided practice,
+            and immediate feedback so you can build confidence one query at a time.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card">
+            <span class="about-card-number">01</span>
+            <h2>Learn the idea</h2>
+            <p>Read a focused lesson with syntax, examples, and plain-language explanations.</p>
+          </article>
+          <article class="about-card">
+            <span class="about-card-number">02</span>
+            <h2>Practice in SQL</h2>
+            <p>Write and execute queries against sample tables with realistic records.</p>
+          </article>
+          <article class="about-card">
+            <span class="about-card-number">03</span>
+            <h2>Build momentum</h2>
+            <p>Use quizzes, hints, XP, and the roadmap to keep moving through the foundations.</p>
+          </article>
+        </div>
+
+        <div class="about-details">
+          <div>
+            <h2>Built for curious beginners</h2>
+            <p>
+              The app is built with Angular and TypeScript, with an Express and SQLite backend for
+              running practice queries. Progress currently stays in the browser session, so a
+              refresh starts a new run.
+            </p>
+          </div>
+          <button class="btn-get-started" (click)="switchTab('lessons')">Start learning</button>
         </div>
       </section>
     </ng-container>
@@ -290,6 +337,7 @@
     <button (click)="switchTab('home')">Home</button>
     <button (click)="switchTab('roadmap')">Roadmap</button>
     <button (click)="switchTab('lessons')">Lessons</button>
+    <button (click)="switchTab('about')">About</button>
   </div>
 
   <p class="footer-copyright">
