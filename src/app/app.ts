@@ -55,7 +55,7 @@ export class App {
   userXP: number = 0;
   currentStreak: number = 0;
 
-  private readonly apiBaseUrl = 'http://localhost:3000/api';
+  private readonly apiBaseUrl = 'https://play-and-learn-api.onrender.com/api';
   executionSummary: string = '';
 
   activeTab: TabType = 'home';
